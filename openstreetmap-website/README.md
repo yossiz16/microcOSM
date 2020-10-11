@@ -11,6 +11,9 @@ To run the container needs a bunch of ENV variables which are:
   - `SERVER_URL` We need to setup the url to the server to send the email
   - `SERVER_PROTOCOL`  protocolo, e.g `http`
 
+- **Configure ID editor
+  - `OAUTH_ID_KEY` the key to enable login
+
 - **Configure ActionMailer SMTP**
 
   - `MAILER_ADDRESS` e.g smtp.gmail.com

@@ -11,6 +11,8 @@ production:
   password: ${POSTGRES_PASSWORD}
   encoding: utf8" > $workdir/config/database.yml
 
+sed -i -e 's/id_key: .*/id_key: "'$OAUTH_ID_KEY'"/g' $workdir/config/settings.yml
+
 # Setting up the SERVER_URL and SERVER_PROTOCOL
 sed -i -e 's/server_url: "localhost"/server_url: "'$SERVER_URL'"/g' $workdir/config/settings.yml
 sed -i -e 's/server_protocol: "http"/server_protocol: "'$SERVER_PROTOCOL'"/g' $workdir/config/settings.yml

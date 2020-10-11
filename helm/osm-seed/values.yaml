@@ -92,6 +92,7 @@ web:
     MAILER_DOMAIN: gmail.com
     MAILER_USERNAME: osmseed.test@gmail.com
     MAILER_PASSWORD: '1234'
+    OAUTH_ID_KEY: 'key'
   resources:
     enabled: false
     requests:

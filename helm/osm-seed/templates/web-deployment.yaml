@@ -63,6 +63,8 @@ spec:
               value: {{ .Values.web.env.MAILER_USERNAME }}
             - name: MAILER_PASSWORD
               value: {{ quote .Values.web.env.MAILER_PASSWORD }}
+            - name: OAUTH_ID_KEY
+              value: {{ .Values.web.env.OAUTH_ID_KEY }}
             # Set domain name or pod ip  
               {{- if .Values.domain.enabled }}
             - name: SERVER_URL

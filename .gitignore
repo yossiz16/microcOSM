@@ -15,3 +15,4 @@ tiler-imposm-data/
 tiler-server-data/
 postgres-gis-osm2pgsql-data/
 postgres-gis-imposm-data/
+**/myvalues.yaml

@@ -1,21 +1,19 @@
 ## Helm Chart configuration
 
-The `osm-seed` folder contains the `Helm` Chart to easily deploy osm-seed to a Kubernetes cluster. For more about helm, see https://helm.sh
+The `microcosm` folder contains the `Helm` Chart to easily deploy microcosm to a Kubernetes cluster. For more about helm, see https://helm.sh
 
 ### Requirements
 
-  - `kubectl`: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-  - `helm`: https://docs.helm.sh/using_helm/#installing-helm
+- `kubectl`: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+- `helm`: https://docs.helm.sh/using_helm/#installing-helm
 
 To test with a local Kubernetes cluster, you may also want to install `Minikube`: https://kubernetes.io/docs/tasks/tools/install-minikube/
-
 
 ### Setup your cluster
 
 Follow instructions to setup a Kubernetes cluster on your favourite cloud / hosting provider: https://kubernetes.io/docs/setup/
 
-If you want to test locally, you can simply run `minikube start --cpus 4 --memory 8192` to start your locally running cluster. 
-
+If you want to test locally, you can simply run `minikube start --cpus 4 --memory 8192` to start your locally running cluster.
 
 ### Setup `helm` on your cluster
 
@@ -23,13 +21,13 @@ You need to install `helm` onto your cluster, and make sure it has adequate perm
 
 With `minikube` as your cluster backend, this can be accomplished with `helm init`. Depending on your Kubernetes cluster backend, you may need some extra steps to ensure `helm` has adequate permissions on your cluster. See https://github.com/kubernetes/helm/blob/master/docs/rbac.md
 
-### Install osm-seed onto your cluster
+### Install microcosm onto your cluster
 
-Look at the [`values.yaml`](osm-seed/values.yaml) file in the `osm-seed` sub-folder to see the various configuration options and values that you need to configure for your installation. Then create a `myvalues.yaml` file, where you can over-ride any of the values defined in `values.yaml`.
+Look at the [`values.yaml`](microcosm/values.yaml) file in the `microcosm` sub-folder to see the various configuration options and values that you need to configure for your installation. Then create a `myvalues.yaml` file, where you can over-ride any of the values defined in `values.yaml`.
 
-You can then install `osm-seed` with:
+You can then install `microcosm` with:
 
-    helm install -f myvalues.yaml osm-seed/
+    helm install -f myvalues.yaml microcosm/
 
 This will setup all the resources required and give you instructions to get the URL of your running instance. You can also use the standard `kubectl` commands to monitor your cluster, view the cluster dashboard, etc.
 
@@ -37,8 +35,7 @@ This will output a generated name for the deployed `release`.
 
 To delete all resources created in the Helm chart:
 
-    helm delete <release-name> 
-
+    helm delete <release-name>
 
 ### Additional Notes
 

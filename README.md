@@ -1,6 +1,6 @@
 # OSM SEED
 
-osm-seed aims to provide an easily installable package for the OpenStreetMap software stack.
+microcosm aims to provide an easily installable package for the OpenStreetMap software stack.
 
 ## Why?
 
@@ -16,27 +16,27 @@ This project provides docker container definitions for various aspects of the Op
 
 ### What's included now:
 
- - `web` A container that runs The OpenStreetMap Rails Port.
- - `db` A container that runs OSM Api database.
- - `id-editor` A container that runs id-editor, synchronizer with  Rails Port. 
- - `populate-apidb` A container that runs `osmium` to import data into the api-db.
- - `planet-dump` A container that exports a planet replication in pbf format.
- - `replication-job`  A container that exports data from the api-db every minute, hour or day.
- - `db-backup-restore` A container that runs database backup.
- - A `Helm` [chart](https://www.helm.sh/), simplifying the process of deploying the entire system onto a Kubernetes cluster.
+- `web` A container that runs The OpenStreetMap Rails Port.
+- `db` A container that runs OSM Api database.
+- `id-editor` A container that runs id-editor, synchronizer with Rails Port.
+- `populate-apidb` A container that runs `osmium` to import data into the api-db.
+- `planet-dump` A container that exports a planet replication in pbf format.
+- `replication-job` A container that exports data from the api-db every minute, hour or day.
+- `db-backup-restore` A container that runs database backup.
+- A `Helm` [chart](https://www.helm.sh/), simplifying the process of deploying the entire system onto a Kubernetes cluster.
 
 ### Diagram
 
 ![](https://user-images.githubusercontent.com/1152236/49454074-6c6b2280-f7b2-11e8-944d-e47136d1dcf9.png)
 
 ### Usage
+
 For more details on installation, see [INSTALL.md](INSTALL.md).
 
 ### Using OSM data
+
 If you plan to use data from the main OpenStreetMap project in your OSM Seed instance, then please make sure you're familiar with [the ODbL license](https://wiki.osmfoundation.org/wiki/Licence).
 
 ## What's next?
 
-Our immediate next goal is integrate a tile server. Eventually, the goal is include as many tools from the OSM ecosystem part of this stack. Take a look at our [roadmap](https://github.com/developmentseed/osm-seed/blob/master/ROADMAP.md), and help out if this project helps what you're trying to do! We are always interested in collaborations and contributions! If you are interested in contributing, please see the [Contributor Guidelines](CONTRIBUTING.md).
-
-
+Our immediate next goal is integrate a tile server. Eventually, the goal is include as many tools from the OSM ecosystem part of this stack. Take a look at our [roadmap](https://github.com/developmentseed/microcosm/blob/master/ROADMAP.md), and help out if this project helps what you're trying to do! We are always interested in collaborations and contributions! If you are interested in contributing, please see the [Contributor Guidelines](CONTRIBUTING.md).

@@ -1,5 +1,5 @@
 {
-  "name": "osm-seed",
+  "name": "microcosm",
   "version": "0.1.1",
   "description": "Docker images and a Helm chart to install the OSM software onto a Kubernetes cluster",
   "main": "",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/developmentseed/osm-seed.git"
+    "url": "git+https://github.com/MapColonies/microcOSM.git"
   },
-  "author": "Development Seed",
+  "author": "Map Colonies",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/developmentseed/osm-seed/issues"
+    "url": "https://github.com/MapColonies/microcOSM.git/issues"
   },
-  "homepage": "https://github.com/developmentseed/osm-seed#readme"
+  "homepage": "https://github.com/MapColonies/microcOSM.git#readme"
 }

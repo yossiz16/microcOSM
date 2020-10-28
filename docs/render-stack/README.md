@@ -1,4 +1,4 @@
-# microcosm-Renderer
+# Render Stack
 
 microcosm stack comes without some fundamental components for a full OSM environment. The microcosm-renderer stack contains the missing pieces and has the following containers:
 
@@ -25,4 +25,4 @@ The state of the rendered tiles is being tracked in a `state.txt` file located i
 - `lastExpired` - the last replication sequenceNumber expired by `osm2pgsql` append.
 - `lastRendered` - the last rendered replication `sequenceNumber` rendered by `tiler-renderer`.
 
-![Alt text](microcosm-renderer-diagram.png?raw=true 'Diagram')
+![Alt text](./microcosm-renderer-diagram.png?raw=true 'Diagram')

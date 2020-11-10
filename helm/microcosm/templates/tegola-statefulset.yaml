@@ -39,7 +39,7 @@ spec:
             httpGet:
               path: /mvt
               port: {{ .Values.tegola.env.TILER_SERVER_PORT }}
-            initialDelaySeconds: 600 # 10 min, because the compile process takes time.
+            initialDelaySeconds: 60 # 10 min, because the compile process takes time.
             timeoutSeconds: 30
           {{- if .Values.tegola.resources.enabled }}
           resources:
@@ -85,6 +85,8 @@ spec:
               value: {{ quote .Values.tegola.env.TILER_CACHE_AWS_SECRET_ACCESS_KEY }}
             - name: TILER_CACHE_MAX_ZOOM
               value: {{ quote .Values.tegola.env.TILER_CACHE_MAX_ZOOM }}
+            - name: TILER_CACHE_MIN_ZOOM
+              value: {{ quote .Values.tegola.env.TILER_CACHE_MIN_ZOOM }}
             - name: EXPIRE_TILES_DIR
               value: {{ .Values.tegola.env.EXPIRE_TILES_DIR }}
             - name: TILER_CACHE_UPDATE_INTERVAL

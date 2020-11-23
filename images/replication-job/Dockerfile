@@ -1,13 +1,12 @@
 FROM ubuntu:18.04
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
-    python-pip \
     libz-dev zlib1g-dev \
     curl unzip \
     tar \
-    bzip2 default-jre
-RUN pip install awscli
+    bzip2 default-jre \
+    python3-pip
 # Install osmosis
-WORKDIR /osmosis
 ENV OSMOSIS_VERSION=0.48.2
 RUN set -x \
     && useradd -ms /bin/bash osmosis \
@@ -18,7 +17,9 @@ RUN set -x \
     && rm -f osmosis-$OSMOSIS_VERSION.tgz \
     && ln -s /opt/osmosis/bin/osmosis /usr/local/bin/osmosis
 WORKDIR /app
-RUN mkdir data
-VOLUME ["/app/data"]
-COPY ./start.sh .
-CMD ./start.sh
+# configure startup script
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+COPY start.py .
+ENTRYPOINT ["python3"]
+CMD ["-u", "./start.py"]

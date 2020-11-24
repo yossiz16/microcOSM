@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     libz-dev zlib1g-dev \
     curl \
     tar \
-    bzip2 default-jre \
+    bzip2 openjdk-8-jre \
     python3-pip
 
 # Install osmosis

@@ -4,6 +4,7 @@ from time import sleep
 from osmeterium.run_command import run_command
 from jsonlogger.logger import JSONLogger
 
+app_name = 'replication-job'
 pg_host = os.environ['POSTGRES_HOST']
 pg_db = os.environ['POSTGRES_DB']
 pg_user = os.environ['POSTGRES_USER']
@@ -28,19 +29,21 @@ def build_osmosis_command(min_interval, iterations, validate_schema_version):
     validate_schema_version = 'yes' if validate_schema_version else 'no'
     return 'osmosis --replicate-apidb iterations={0} minInterval={1} host={2} database={3} user={4} password={5} validateSchemaVersion={6} --write-replication workingDirectory={7}'\
         .format(iterations, min_interval, pg_host, pg_db, pg_user, pg_password, validate_schema_version, replication_directory)
+
 def run_minute_replication():
     osmosis_command = build_osmosis_command(osmosis_min_interval, osmosis_iterations, osmosis_validate_schema_version)
     run_command(osmosis_command, process_log.info, process_log.error, handle_osmosis_failure, handle_osmosis_success)
 
 def main():
-    # if not os.path.exists(replication_directory):
-    while True:
-        run_minute_replication()
-        sleep(60)
+
+    log.info('{0} is up'.format(app_name))
+    run_minute_replication()
 
 if __name__ == "__main__":
-    os.makedirs('/var/log/osm-seed', exist_ok=True)
-    log = JSONLogger('main-debug', additional_fields={'service': 'replication-job', 'description': 'service logs'})
-    process_log = JSONLogger('main-debug', additional_fields={'service': 'replication-job', 'description': 'osmosis logs'})
-    log.info('replication-job is up')
+    base_log_path = '/var/log'
+    service_logs_path = '{0}/{1}.log'.format(base_log_path, app_name)
+    osmosis_logs_path = '{0}/{1}.log'.format(base_log_path, 'osmosis')
+    os.makedirs('{0}/{1}'.format(base_log_path, app_name), exist_ok=True)
+    log = JSONLogger('main-debug', config={'handlers': {'file': {'filename': service_logs_path}}}, additional_fields={'service': app_name, 'description': 'service logs'})
+    process_log = JSONLogger('main-debug', config={'handlers': {'file': {'filename': osmosis_logs_path}}}, additional_fields={'service': app_name, 'description': 'osmosis logs'})
     main()

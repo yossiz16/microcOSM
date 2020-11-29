@@ -14,5 +14,6 @@ for d in */ ; do
     cd $foldername
     docker build -q -t $SHA -t $ECR/$foldername:$TAG .
     docker push $ECR/$foldername:$TAG
+    cd ..
   fi
 done

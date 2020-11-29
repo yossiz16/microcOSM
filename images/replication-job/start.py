@@ -2,7 +2,7 @@
 import os
 from time import sleep
 from osmeterium.run_command import run_command
-from jsonlogger.logger import JSONLogger
+from MapColoniesJSONLogger.logger import generate_logger
 
 app_name = 'replication-job'
 pg_host = os.environ['POSTGRES_HOST']
@@ -35,15 +35,14 @@ def run_minute_replication():
     run_command(osmosis_command, process_log.info, process_log.error, handle_osmosis_failure, handle_osmosis_success)
 
 def main():
-
     log.info('{0} is up'.format(app_name))
     run_minute_replication()
 
 if __name__ == "__main__":
-    base_log_path = '/var/log'
+    base_log_path = os.path.join('/var/log', app_name)
     service_logs_path = '{0}/{1}.log'.format(base_log_path, app_name)
     osmosis_logs_path = '{0}/{1}.log'.format(base_log_path, 'osmosis')
-    os.makedirs('{0}/{1}'.format(base_log_path, app_name), exist_ok=True)
-    log = JSONLogger('main-debug', config={'handlers': {'file': {'filename': service_logs_path}}}, additional_fields={'service': app_name, 'description': 'service logs'})
-    process_log = JSONLogger('main-debug', config={'handlers': {'file': {'filename': osmosis_logs_path}}}, additional_fields={'service': app_name, 'description': 'osmosis logs'})
+    os.makedirs(base_log_path, exist_ok=True)
+    log = generate_logger(app_name, log_level='INFO', handlers=[{'type': 'rotating_file', 'path': service_logs_path},{ 'type': 'stream', 'output': 'stderr' }])
+    process_log = generate_logger('osmosis', log_level='INFO', handlers=[{'type': 'rotating_file', 'path': osmosis_logs_path}, { 'type': 'stream', 'output': 'stderr' }])
     main()

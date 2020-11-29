@@ -1,7 +1,7 @@
 #!/bin/bash
 echo $PWD
 set -e
-SHA=`git rev-parse HEAD`
+SHA=`git rev-parse HEAD --tags`
 TAG=`git describe --abbrev=0`
 ECR=645470188746.dkr.ecr.eu-west-1.amazonaws.com
 echo $TAG

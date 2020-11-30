@@ -30,7 +30,7 @@ WORKDIR /osm
 #COPY ./config/postgis_helpers.sql postgis_helpers.sql
 #COPY ./config/postgis_index.sql postgis_index.sql
 #COPY ./config/first-osm-import.pbf .
-COPY ./config/* .
+COPY ./config/* ./
 COPY start.py start.py
 RUN chmod a+x start.py
 CMD ./start.py
